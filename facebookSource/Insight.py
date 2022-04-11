@@ -65,7 +65,10 @@ class Insight:
 				pass
 			retval += array
 			# log this:
-			url = decode(response['paging'],'next')
+			try:
+				url = response['paging']['next']
+			except:
+				url = None
 		return retval
 
 	def asRawDF(self):
