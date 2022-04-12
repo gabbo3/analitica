@@ -1,6 +1,6 @@
 from facebookSource.Insight import Insight
 import pandas as pd
-from mappings.facebookSource.ComplexInsights import FbComplexInsights
+from mappings.facebookSource.ComplexInsights import ComplexInsightMapping
 
 class ComplexInsight(Insight):
 	def asSQLDF(self):
@@ -15,4 +15,4 @@ class ComplexInsight(Insight):
 				fbList['dimension'] = j
 				fbList['value'] = i['values'][j]
 				array.append(fbList)
-		return pd.DataFrame(FbComplexInsights.clean(array))
+		return pd.DataFrame(ComplexInsightMapping.sql(array))
