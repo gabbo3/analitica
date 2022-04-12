@@ -1,9 +1,18 @@
 from datetime import datetime
 from mappings.Mapping import Mapping
 
-class FbComplexInsights(Mapping):
+class ComplexInsightMapping(Mapping):
+
 	@classmethod
-	def clean(cls,data: list[dict]) -> list[dict]:
+	def raw(cls,data: dict):
+		return data
+
+	@classmethod
+	def clean(cls,data: dict):
+		return data
+
+	@classmethod
+	def sql(cls,data: list[dict]) -> list[dict]:
 		retval = [{}]
 		retval.pop()
 		for i in data:

@@ -2,20 +2,17 @@ from datetime import datetime
 from mappings.Mapping import Mapping
 from utils.decode import decode
 
-class PostMongoRaw(Mapping):
+class PostMapping(Mapping):
 	@classmethod
-	def clean(cls,data: dict):
-		data['pageid'] = data['id'].split('_')[0]
+	def raw(cls,data: dict):
 		return data
 
-class PostMongoClean(Mapping):
 	@classmethod
 	def clean(cls,data: dict):
 		return data
 		
-class PostSQL(Mapping):
 	@classmethod
-	def clean(cls,data: dict):
+	def sql(cls,data: dict):
 		dict2Load = {}
 		dict2Load['UKEY'] = data['id']
 		dict2Load['ID'] = data['id']
