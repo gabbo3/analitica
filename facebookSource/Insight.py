@@ -1,10 +1,10 @@
 from datetime import datetime, timedelta
-import pandas as pd
 import requests
 import json
+import logging
 
-from mappings.facebookSource.Insights import FbInsights
-from utils.decode import decode
+from mappings.facebookSource.Insights import InsightMapping
+
 
 class Insight:
 	def __init__(self,name,pageid,token,pagename,n_days=10,since:str = None):
@@ -60,9 +60,9 @@ class Insight:
 					fbList['period'] = response['data'][0]['period']
 					fbList['value'] = i['value']
 					array.append(fbList)
-			except:
-				# Log error
-				pass
+			except Exception as e:
+				logging.warning('Insight name: ' + self.name)
+				logging.warning(e, exc_info=True)
 			retval += array
 			# log this:
 			try:
@@ -72,10 +72,10 @@ class Insight:
 		return retval
 
 	def asRawDF(self):
-		return pd.DataFrame(self.data)
+		return InsightMapping.raw(self.data)
 
 	def asCleanDF(self):
-		return pd.DataFrame(self.data)
+		return InsightMapping.clean(self.data)
 
 	def asSQLDF(self):
-		return pd.DataFrame(FbInsights.clean(self.data))
+		return InsightMapping.sql(self.data)
