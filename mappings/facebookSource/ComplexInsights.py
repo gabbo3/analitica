@@ -19,7 +19,7 @@ class ComplexInsightMapping(Mapping):
 			dict2Load = {}
 			dict2Load['UKEY'] = cls.getUkey(i)
 			dict2Load['EndTime'] = datetime.strftime(datetime.strptime(i['end_time'],'%Y-%m-%dT%H:%M:%S+0000'),'%Y-%m-%d')
-			dict2Load['Dimension'] = i['dimension']
+			dict2Load['Dimension'] = str(i['dimension'])
 			dict2Load['Value'] = i['value']
 			dict2Load['Target'] = i['page']
 			dict2Load['InsightName'] = i['insightName'].upper()
