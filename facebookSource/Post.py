@@ -1,6 +1,6 @@
 import requests
 import json
-from mappings.facebookSource.Post import PostMapping, PostMongoRaw, PostMongoClean, PostSQL
+from mappings.facebookSource.Post import PostMapping
 
 
 class Post:
