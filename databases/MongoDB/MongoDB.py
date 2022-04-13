@@ -1,3 +1,4 @@
+import logging
 from databases.Database import Database
 import pandas as pd
 from pymongo import MongoClient
@@ -20,16 +21,20 @@ class MongoDB(Database):
 			id = lista.pop('id')
 			collection.update_one({"_id": id},{"$set": lista},upsert=True)
 
-	def upsertDict(self,aDict: dict, base, collection):
+	def upsertDict(self,data: dict, base, collection):
+		aDict = dict(data)
 		# database
 		db = self.client[base]
 		# collection
 		collection = db[collection]
-
-		id = aDict.pop('id')
-		# Upsert
-		collection.update_one(
-			{"_id": id},
-			{"$set": aDict},
-			upsert=True
-		)
+		try:
+			id = aDict.pop('id')
+			# Upsert
+			collection.update_one(
+				{"_id": id},
+				{"$set": aDict},
+				upsert=True
+			)
+		except Exception as e:
+			logging.error('Failed to upload a dict')
+			logging.error(aDict)
