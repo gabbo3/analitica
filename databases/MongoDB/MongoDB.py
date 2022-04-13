@@ -26,7 +26,7 @@ class MongoDB(Database):
 		# collection
 		collection = db[collection]
 
-		id = aDict.pop('_id')
+		id = aDict.pop('id')
 		# Upsert
 		collection.update_one(
 			{"_id": id},
