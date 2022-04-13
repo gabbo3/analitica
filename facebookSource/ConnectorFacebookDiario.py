@@ -13,6 +13,7 @@ class ConnectorFacebookDiario(ConnectorFacebook):
 			posts = a.getPosts(10)
 
 			postsSQL = []
+			logging.info('Subiendo posteos de: ' + a.name + 'a MongoDB')
 			for p in posts:
 				self.mongo.upsertDict(p.asRawDict(),'TESTE','FacebookPosts_raw')
 				self.mongo.upsertDict(p.asCleanDict(),'TESTE','FacebookPosts_clean')
