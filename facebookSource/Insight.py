@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import pandas as pd
 import requests
 import json
 import logging
@@ -72,10 +73,10 @@ class Insight:
 		return retval
 
 	def asRawDF(self):
-		return InsightMapping.raw(self.data)
+		return pd.DataFrame(InsightMapping.raw(self.data))
 
 	def asCleanDF(self):
-		return InsightMapping.clean(self.data)
+		return pd.DataFrame(InsightMapping.clean(self.data))
 
 	def asSQLDF(self):
-		return InsightMapping.sql(self.data)
+		return pd.DataFrame(InsightMapping.sql(self.data))
