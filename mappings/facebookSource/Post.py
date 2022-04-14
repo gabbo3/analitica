@@ -16,7 +16,7 @@ class PostMapping(Mapping):
 		dict2Load = {}
 		dict2Load['UKEY'] = data['id']
 		dict2Load['ID'] = data['id']
-		dict2Load['Message'] = data['message']
+		dict2Load['Message'] = decode(data, 'message')
 		dict2Load['Type'] = decode(data, 'type')
 		dict2Load['Link'] = decode(data, 'url')
 		dict2Load['Slug'] = decode(data, 'slug')
