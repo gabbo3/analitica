@@ -36,5 +36,5 @@ class ConnectorFacebookDiario(ConnectorFacebook):
 
 			for i in insights:
 				self.mongo.upsertDF(i.asRawDF(),'RAWDATA','FacebookInsights')
-				self.mongo.upsertDF(i.asCleanDF(),'TESTE','FacebookComplexInsights_clean')
+				# self.mongo.upsertDF(i.asCleanDF(),'TESTE','FacebookComplexInsights_clean')
 				self.sql.upsert(i.asSQLDF(),'PY_FB_COMPLEX_INSIGHTS')
