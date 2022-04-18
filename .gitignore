@@ -3,6 +3,8 @@ dev/*
 test/*
 # Credenciales y secretos
 accounts.csv
+googleads.yaml
+GoogleServiceAccount.json
 
 # Visual Studio Code
 .vscode/
