@@ -11,8 +11,8 @@ class ConnectorFacebookInsights(ConnectorFacebook):
 			insights = a.getInsights(since='2020-01-01')
 
 			for i in insights:
-				self.mongo.upsertDF(i.asRawDF(),'TESTE','FacebookInsights_raw')
-				self.mongo.upsertDF(i.asCleanDF(),'TESTE','FacebookInsights_clean')
+				self.mongo.upsertDF(i.asRawDF(),'RAWDATA','FacebookInsights')
+				# self.mongo.upsertDF(i.asCleanDF(),'CLEANSED','FacebookInsights_clean')
 				self.sql.upsert(i.asSQLDF(),'PY_FB_INSIGHTS')
 
 			# Complex Insights
@@ -20,6 +20,6 @@ class ConnectorFacebookInsights(ConnectorFacebook):
 			insights = a.getComplexInsights(since='2020-01-01')
 
 			for i in insights:
-				self.mongo.upsertDF(i.asRawDF(),'TESTE','FacebookInsights_raw')
-				self.mongo.upsertDF(i.asCleanDF(),'TESTE','FacebookComplexInsights_clean')
+				self.mongo.upsertDF(i.asRawDF(),'RAWDATA','FacebookInsights')
+				# self.mongo.upsertDF(i.asCleanDF(),'TESTE','FacebookComplexInsights_clean')
 				self.sql.upsert(i.asSQLDF(),'PY_FB_COMPLEX_INSIGHTS')
