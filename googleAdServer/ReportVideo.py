@@ -8,4 +8,4 @@ class ReportVideo(Report):
 		self.dimensions = ['DATE', 'AD_UNIT_NAME', 'POSITION_IN_POD', 'POSITION_OF_POD']
 
 	def asSQLDF(self):
-		return DFPVideo.clean(self.data)
+		return DFPVideo.sql(self.data)

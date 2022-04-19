@@ -8,4 +8,4 @@ class ReportNoVideo(Report):
 		self.dimensions = ['DATE', 'AD_UNIT_NAME']
 
 	def asSQLDF(self):
-		return DFPNoVideo.clean(self.data)
+		return DFPNoVideo.sql(self.data)
