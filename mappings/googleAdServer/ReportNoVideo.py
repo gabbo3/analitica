@@ -5,7 +5,7 @@ import re
 
 class DFPNoVideo(Mapping):
 	@classmethod
-	def clean(cls,df: pd.DataFrame):
+	def sql(cls,df: pd.DataFrame):
 		data = []
 		for row in df.itertuples(index=False,name=None):
 			AdsList = {}
