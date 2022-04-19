@@ -15,7 +15,7 @@ class ConnectorFacebookDiario(ConnectorFacebook):
 			postsSQL = []
 			logging.info('Subiendo posteos de: ' + a.name + 'a MongoDB')
 			for p in posts:
-				self.mongo.upsertDict(p.asRawDict(),'RAWDATA','FacebookPosts')
+				self.mongo.upsertDict(p.asRawDict(),'TESTE','FacebookPosts_raw')
 				# self.mongo.upsertDict(p.asCleanDict(),'TESTE','FacebookPosts_clean')
 				postsSQL.append(p.asSQLDict())
 			
@@ -26,7 +26,7 @@ class ConnectorFacebookDiario(ConnectorFacebook):
 			insights = a.getInsights(10)
 
 			for i in insights:
-				self.mongo.upsertDF(i.asRawDF(),'RAWDATA','FacebookInsights')
+				self.mongo.upsertDF(i.asRawDF(),'TESTE','FacebookInsights_raw')
 				# self.mongo.upsertDF(i.asCleanDF(),'TESTE','FacebookInsights_clean')
 				self.sql.upsert(i.asSQLDF(),'PY_FB_INSIGHTS')
 			
@@ -35,6 +35,6 @@ class ConnectorFacebookDiario(ConnectorFacebook):
 			insights = a.getComplexInsights(10)
 
 			for i in insights:
-				self.mongo.upsertDF(i.asRawDF(),'RAWDATA','FacebookInsights')
+				self.mongo.upsertDF(i.asRawDF(),'TESTE','FacebookInsights_raw')
 				# self.mongo.upsertDF(i.asCleanDF(),'TESTE','FacebookComplexInsights_clean')
 				self.sql.upsert(i.asSQLDF(),'PY_FB_COMPLEX_INSIGHTS')
