@@ -17,18 +17,16 @@ class ConnectorGoogleAd(Connector):
 			logging.info('dimensionsNoVideo')
 			firstReport = ReportNoVideo()
 			firstReport.run()
-			self.mongo.upsertDF(firstReport.asRawDF(),'base','collection')
-			self.mongo.upsertDF(firstReport.asCleanDF(),'base','collection')
+			self.mongo.upsertDF(firstReport.asRawDF(),'TESTE','GoogleAdServer')
 			self.sql.upsert(firstReport.asSQLDF(),'PY_DFP_Impresiones')
 		except Exception as e:
-			logging.error('Error: Report No Video')
+			logging.error('Error: Report No Video',exc_info=True)
 		try:
 			logging.info('dimensionsVideo')
 			secondReport = ReportVideo()
 			secondReport.run()
-			self.mongo.upsertDF(secondReport.asRawDF(),'base','collection')
-			self.mongo.upsertDF(secondReport.asCleanDF(),'base','collection')
+			self.mongo.upsertDF(secondReport.asRawDF(),'TESTE','GoogleAdServer')
 			self.sql.upsert(secondReport.asSQLDF(),'PY_DFP_Impresiones_videos')
 		except Exception as e:
-			logging.error('Error: Report Video')
+			logging.error('Error: Report Video', exc_info=True)
 	
