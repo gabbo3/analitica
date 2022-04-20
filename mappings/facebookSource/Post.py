@@ -1,4 +1,6 @@
 from datetime import datetime
+import urllib.parse
+import urllib3
 from mappings.Mapping import Mapping
 from utils.decode import decode
 
@@ -17,9 +19,20 @@ class PostMapping(Mapping):
 		dict2Load['UKEY'] = data['id']
 		dict2Load['ID'] = data['id']
 		dict2Load['Message'] = decode(data, 'message')
-		dict2Load['Type'] = decode(data, 'type')
-		dict2Load['Link'] = decode(data, 'url')
-		dict2Load['Slug'] = decode(data, 'slug')
+
+		try: 
+			dict2Load['Type'] = data['attachments']['data'][0]['type']
+		except:
+			dict2Load['Type'] = None
+		try: 
+			dict2Load['Link'] = getUrl(data['attachments'])
+		except:
+			dict2Load['Link'] = None
+		try: 
+			dict2Load['Slug'] = getSlug(dict2Load['Link'],dict2Load['Type'])
+		except:
+			dict2Load['Slug'] = None
+
 		dict2Load['CreatedTime'] = datetime.strftime(datetime.strptime(data['created_time'],'%Y-%m-%dT%H:%M:%S+0000'),'%Y-%m-%d %H:%M:%S')
 		dict2Load['CommentsCount'] = data['comments']
 		dict2Load['LikesCount'] = data['likes']
@@ -80,4 +93,27 @@ class PostMapping(Mapping):
 			return 'TodoCine'
 		else:
 			return 'ErrorMapeo'
-	
+			
+def getUrl(attachments):
+	urlTmp = None
+	try:
+		urlTmp = attachments['data'][0]['url']
+		urlTmp = urlTmp.replace('https://l.facebook.com/l.php?u=','')
+		urlTmp = urllib.parse.unquote(urlTmp, encoding='utf-8', errors='replace')
+		urlTmp = urlTmp.split('&h=', 1)[0]
+		urlTmp = urlTmp.replace('http://l.facebook.com/l.php?u=','')
+
+		if urlTmp[:13] == 'http://ow.ly/':
+			fp = urllib3.urlopen('http://bit.ly/rgCbf')
+			urlTmp = fp.geturl()
+	except:
+		pass
+
+	return urlTmp
+
+def getSlug(url,type):
+	if url[-1] == '/':
+		url = url[:-1]
+	if type != 'instant_article_legacy' and type != 'share':
+		return None
+	return url.rsplit('/', 1)[1]
