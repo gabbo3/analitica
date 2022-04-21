@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import urllib.parse
 import urllib3
 from mappings.Mapping import Mapping
@@ -33,12 +33,12 @@ class PostMapping(Mapping):
 		except:
 			dict2Load['Slug'] = None
 
-		dict2Load['CreatedTime'] = datetime.strftime(datetime.strptime(data['created_time'],'%Y-%m-%dT%H:%M:%S+0000'),'%Y-%m-%d %H:%M:%S')
+		dict2Load['CreatedTime'] = datetime.strftime(datetime.strptime(data['created_time'],'%Y-%m-%dT%H:%M:%S+0000') - timedelta(hours=3),'%Y-%m-%d %H:%M:%S')
 		dict2Load['CommentsCount'] = data['comments']
 		dict2Load['LikesCount'] = data['likes']
 		dict2Load['SharesCount'] = data['shares']
 		dict2Load['Origen'] = cls.getOrigen(data['pagename'])
-		dict2Load['FechaFiltro'] = datetime.strftime(datetime.strptime(data['created_time'],'%Y-%m-%dT%H:%M:%S+0000'),'%Y-%m-%d')
+		dict2Load['FechaFiltro'] = datetime.strftime(datetime.strptime(data['created_time'],'%Y-%m-%dT%H:%M:%S+0000') - timedelta(hours=3),'%Y-%m-%d')
 		dict2Load['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S')
 		dict2Load['FechaModificacion'] = None
 		return dict2Load

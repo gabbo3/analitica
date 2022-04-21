@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from mappings.Mapping import Mapping
 
 class InsightMapping(Mapping):
@@ -18,13 +18,13 @@ class InsightMapping(Mapping):
 		for i in data:
 			dict2Load = {}
 			dict2Load['UKEY'] = cls.getUkey(i)
-			dict2Load['EndTime'] = datetime.strftime(datetime.strptime(i['end_time'],'%Y-%m-%dT%H:%M:%S+0000'),'%Y-%m-%d')
+			dict2Load['EndTime'] = datetime.strftime(datetime.strptime(i['end_time'],'%Y-%m-%dT%H:%M:%S+0000') - timedelta(hours=3),'%Y-%m-%d')
 			dict2Load['Value'] = i['value']
 			dict2Load['Target'] = i['page']
 			dict2Load['InsightName'] = i['insightName'].upper()
 			dict2Load['Period'] = i['period']
 			dict2Load['Origen'] = cls.getOrigen(i['page'])
-			dict2Load['FechaFiltro'] = datetime.strftime(datetime.strptime(i['end_time'],'%Y-%m-%dT%H:%M:%S+0000'),'%Y-%m-%d')
+			dict2Load['FechaFiltro'] = datetime.strftime(datetime.strptime(i['end_time'],'%Y-%m-%dT%H:%M:%S+0000') - timedelta(hours=3),'%Y-%m-%d')
 			dict2Load['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S')
 			dict2Load['FechaModificacion'] = None
 			retval.append(dict2Load)
@@ -33,7 +33,7 @@ class InsightMapping(Mapping):
 	@classmethod
 	def getUkey(cls,data):
 		insightname = data['insightName'].upper()
-		endtime = datetime.strftime(datetime.strptime(data['end_time'],'%Y-%m-%dT%H:%M:%S+0000'),'%Y-%m-%d')
+		endtime = datetime.strftime(datetime.strptime(data['end_time'],'%Y-%m-%dT%H:%M:%S+0000') - timedelta(hours=3),'%Y-%m-%d')
 		origen = cls.getOrigen(data['page'])
 		ukey = origen + insightname + endtime
 		return ukey
