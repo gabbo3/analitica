@@ -41,6 +41,3 @@ class Report:
 		df = pd.read_csv(report_file.name, compression='gzip')
 		os.remove(report_file.name)
 		self.data = df
-
-	def asRawDF(self):
-		return self.data

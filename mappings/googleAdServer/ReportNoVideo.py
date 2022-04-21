@@ -5,6 +5,24 @@ import re
 
 class DFPNoVideo(Mapping):
 	@classmethod
+	def raw(cls,df: pd.DataFrame):
+		data = []
+		for (idx,date, ad_unit_name, ad_unit_id,
+			total_line_item_level_impressions,
+			total_line_item_level_clicks) in df.itertuples():
+			dfpList = {}
+			dfpList['id'] = date + '_' + ad_unit_name
+			dfpList['adType'] = 'all'
+			dfpList['adUnit'] = ad_unit_name
+			dfpList['adUnitId'] = ad_unit_id
+			dfpList['date'] = date
+			dfpList['totalClicks'] = total_line_item_level_clicks
+			dfpList['totalImpressions'] = total_line_item_level_impressions
+			data.append(dfpList)
+		df_ret = pd.DataFrame(data)
+		return df_ret
+
+	@classmethod
 	def sql(cls,df: pd.DataFrame):
 		data = []
 		for row in df.itertuples(index=False,name=None):

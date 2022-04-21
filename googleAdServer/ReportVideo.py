@@ -7,5 +7,8 @@ class ReportVideo(Report):
 		super().__init__()
 		self.dimensions = ['DATE', 'AD_UNIT_NAME', 'POSITION_IN_POD', 'POSITION_OF_POD']
 
+	def asRawDF(self):
+		return DFPVideo.raw(self.data)
+		
 	def asSQLDF(self):
 		return DFPVideo.sql(self.data)
