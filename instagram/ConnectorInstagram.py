@@ -29,15 +29,15 @@ class ConnectorInstagram(Connector):
 				stories_df.append(s.asSQLDict())
 			self.sql.upsert(pd.DataFrame(stories_df),'PY_IG_STORIES')
 
-			# insights = a.getDailyInsights(10)
-			# for i in insights:
-			# 	self.mongo.upsertDict(i.asRawDF(),'TESTE','InstagramInsights')
-			# 	self.sql.upsert(i.asSQLDF(),'PY_IG_AccountInsights')
+			insights = a.getDailyInsights(10)
+			for i in insights:
+				self.mongo.upsertDF(i.asRawDF(),'TESTE','InstagramInsights')
+				self.sql.upsert(i.asSQLDF(),'PY_IG_AccountInsights')
 
-			# insights = a.getLifetimeInsights(10)
-			# for i in insights:
-			# 	self.mongo.upsertDict(i.asRawDF(),'TESTE','InstagramInsights')
-			# 	self.sql.upsert(i.asSQLDF(),'PY_IG_AudienceInsights')
+			insights = a.getLifetimeInsights(10)
+			for i in insights:
+				self.mongo.upsertDF(i.asRawDF(),'TESTE','InstagramInsights')
+				self.sql.upsert(i.asSQLDF(),'PY_IG_SimpleInsights')
 
 	def loadAccounts(self) -> list[Account]:
 		filepath = 'instagram/accounts.csv'
