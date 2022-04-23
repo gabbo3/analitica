@@ -54,7 +54,7 @@ class InsightMapping(Mapping):
 				IGList['AudienceGroup'] = val
 				IGList['TotalAudience'] = i['value'][val]
 				IGList['Description'] = data['description']
-				IGList['Origen'] = None
+				IGList['Origen'] = cls.getOrigen(data['id'].split('/')[0])
 				IGList['FechaFiltro'] = timestamp
 				IGList['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S')
 				IGList['FechaModificacion'] = None
@@ -67,60 +67,37 @@ class InsightMapping(Mapping):
 		array = []
 		for i in data['values']:
 			IGList = {}
-			IGList['UKEY'] = data['name']
-			IGList['Id'] = data['name']
-			
-			# IGList['UKEY'] = 
-			# IGList['EndTime'] = 
-			# IGList['Impressions'] = 
-			# IGList['Reach'] = 
-			# IGList['ProfileViews'] = 
-			# IGList['FollowerCount'] = 
-			# IGList['EmailContacts'] = 
-			# IGList['PhoneCallClicks'] = 
-			# IGList['TextMessageClicks'] = 
-			# IGList['GetDirectionsClicks'] = 
-			# IGList['Websiteclicks'] = 
-			# IGList['Period'] = 
-			# IGList['Origen'] = 
-			# IGList['FechaFiltro'] = 
-			# IGList['FechaCreacion'] = 
-			# IGList['FechaModificacion'] = 
-
-			IGList['period'] = data['period']
-			IGList['title'] = data['title']
-			IGList['description'] = data['description']
-			IGList['value'] = i['value']
-			IGList['end_time'] = i['end_time']
-			IGList['id'] = data['id'] + '_' + i['end_time']
+			timestamp = datetime.strftime(datetime.strptime(i['end_time'],'%Y-%m-%dT%H:%M:%S+0000') - timedelta(hours=3),'%Y-%m-%d')
+			IGList['UKEY'] = data['id'] + '_' + timestamp
+			IGList['EndTime'] = timestamp
+			IGList['InsightName'] = data['name']
+			IGList['Value'] = i['value']
+			IGList['Period'] = data['period']
+			IGList['Origen'] = cls.getOrigen(data['id'].split('/')[0])
+			IGList['FechaFiltro'] = timestamp
+			IGList['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S')
+			IGList['FechaModificacion'] = None
 			array.append(IGList)
 		df_ret = pd.DataFrame(array)
 		return df_ret
 
 	@classmethod
-	def getUkey(cls,data):
-		id = data['id']
-		origen = cls.getOrigen(data['username'])
-		ukey = origen + str(id)
-		return ukey
-
-	@classmethod
 	def getOrigen(cls,username):
-		if username == 'la100fm':
+		if username == '17841400247488610':
 			return 'La100'
-		elif username == 'bonelliok':
+		elif username == '17841405767270271':
 			return 'Bonelli'
-		elif username == 'cienradios':
+		elif username == '17841400005451507':
 			return 'Cienradios'
-		elif username == 'fashionclickok':
+		elif username == '17841401334624038':
 			return 'Fashion'
-		elif username == 'fernandezdiazok':
+		elif username == '17841405997846545':
 			return 'FernandezD'
-		elif username == 'longobardioficial':
+		elif username == '17841405322953987':
 			return 'Longobardi'
-		elif username == 'miafmok':
+		elif username == '17841405609333285':
 			return 'Mia'
-		elif username == 'radiomitre':
+		elif username == '17841401850931197':
 			return 'Mitre'
 		else:
 			return 'ErrorMapeo'
