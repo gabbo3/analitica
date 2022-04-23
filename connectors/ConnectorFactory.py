@@ -2,7 +2,7 @@ from connectors.Connector import Connector
 from facebookSource.ConnectorFacebookDiario import ConnectorFacebookDiario
 from facebookSource.ConnectorFacebookInsights import ConnectorFacebookInsights
 from googleAdServer.ConnectorGoogleAd import ConnectorGoogleAd
-# from instagram.ConnectorInstagram import ConnectorInstagram
+from instagram.ConnectorInstagram import ConnectorInstagram
 
 
 class ConnectorFactory:
@@ -11,8 +11,8 @@ class ConnectorFactory:
             return ConnectorFacebookDiario()
         elif name == 'facebookinsights':
             return ConnectorFacebookInsights()
-        # elif name == 'instagram':
-        #     return ConnectorInstagram()
+        elif name == 'instagram':
+            return ConnectorInstagram()
         elif name == 'googleadserver':
             return ConnectorGoogleAd()
         else:
