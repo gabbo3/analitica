@@ -11,6 +11,9 @@ decorator==5.1.1
 entrypoints==0.4
 executing==0.8.3
 facebook-sdk==3.1.0
+google-api-core==2.3.2
+google-api-python-client==2.33.0
+google-auth-httplib2==0.1.0
 google-auth==1.35.0
 google-auth-oauthlib==0.5.1
 googleads==31.0.0
