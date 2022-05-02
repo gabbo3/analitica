@@ -1,0 +1,71 @@
+{
+    "Queries": [
+        {
+            "name": "Numeros totales",
+            "metrics": "ga:users,ga:sessions,ga:pageviews,ga:bounceRate,ga:avgSessionDuration",
+            "dimensions": "ga:yearMonth"
+        },
+        {
+            "name": "sin player",
+            "metrics": "ga:users,ga:sessions,ga:pageviews,ga:bounceRate,ga:avgSessionDuration",
+            "filters": "ga:pagePath!@/player/;ga:pagePath!@/hd/ ",
+            "dimensions": "ga:yearMonth"
+        },
+        {
+            "name": "x Canal",
+            "metrics": "ga:users,ga:sessions,ga:pageviews,ga:bounceRate,ga:avgSessionDuration",
+            "dimensions": "ga:yearMonth,ga:channelGrouping"
+        },
+        {
+            "name": "x Pais",
+            "metrics": "ga:users,ga:sessions,ga:pageviews,ga:bounceRate,ga:avgSessionDuration",
+            "filters": "NO",
+            "dimensions": "ga:yearMonth,ga:country"
+        },
+        {
+            "name": "x Dispositivo y pais",
+            "metrics": "ga:users,ga:sessions,ga:pageviews,ga:bounceRate,ga:avgSessionDuration",
+            "dimensions": "ga:yearMonth,ga:country,ga:deviceCategory"
+        },
+        {
+            "name": "x Dispositivo",
+            "metrics": "ga:users,ga:sessions,ga:pageviews,ga:bounceRate,ga:avgSessionDuration",
+            "dimensions": "ga:yearMonth,ga:deviceCategory"
+        },
+        {
+            "name": "x Dispositivo",
+            "metrics": "ga:users,ga:sessions,ga:pageviews,ga:bounceRate,ga:avgSessionDuration",
+            "filters": "ga:hostname==marcelolongobardi.radiomitre.com.ar,ga:hostname==marcelolongobardi.cienradios.com,ga:hostname==marcelobonelli.cienradios.com,ga:hostname==jorgefernandezdiaz.cienradios.com,ga:hostname==cristinaperez.cienradios.com,ga:hostname==pablorossi.cienradios.com,ga:hostname==marcelatauro.cienradios.com,ga:hostname==lauradimarco.cienradios.com,ga:hostname==peladolopez.cienradios.com,ga:hostname==guillermocoppola.cienradios.com,ga:hostname==www.tatoyoung.com.ar",
+            "dimensions": "ga:yearMonth,ga:hostname"
+        },
+        {
+            "name": "x Hostname ADC",
+            "metrics": "ga:users,ga:sessions,ga:pageviews,ga:bounceRate,ga:avgSessionDuration",
+            "filters": "ga:hostname==marcelolongobardi.radiomitre.com.ar,ga:hostname==marcelolongobardi.cienradios.com,ga:hostname==marcelobonelli.cienradios.com,ga:hostname==jorgefernandezdiaz.cienradios.com,ga:hostname==cristinaperez.cienradios.com,ga:hostname==pablorossi.cienradios.com,ga:hostname==marcelatauro.cienradios.com,ga:hostname==lauradimarco.cienradios.com,ga:hostname==peladolopez.cienradios.com,ga:hostname==guillermocoppola.cienradios.com,ga:hostname==www.tatoyoung.com.ar",
+            "dimensions": "ga:yearMonth"
+        },
+        {
+            "name": "x Hostname Verticales",
+            "metrics": "ga:users,ga:sessions,ga:pageviews,ga:bounceRate,ga:avgSessionDuration",
+            "filters": "ga:hostname==fashionclick.cienradios.com,ga:hostname==libros.cienradios.com,ga:hostname==miafm.cienradios.com,ga:hostname==mitreyelcampo.cienradios.com,ga:hostname==planetavivo.cienradios.com,ga:hostname==mundoclasico.cienradios.com,ga:hostname==motortrend.cienradios.com",
+            "dimensions": "ga:yearMonth,ga:hostname"
+        },
+        {
+            "name": "x Hostname Totales",
+            "metrics": "ga:users,ga:sessions,ga:pageviews,ga:bounceRate,ga:avgSessionDuration",
+            "filters": "ga:hostname==fashionclick.cienradios.com,ga:hostname==libros.cienradios.com,ga:hostname==miafm.cienradios.com,ga:hostname==mitreyelcampo.cienradios.com,ga:hostname==planetavivo.cienradios.com,ga:hostname==mundoclasico.cienradios.com,ga:hostname==motortrend.cienradios.com",
+            "dimensions": "ga:yearMonth"
+        },
+        {
+            "name": "x Fuente",
+            "metrics": "ga:users,ga:sessions,ga:pageviews,ga:bounceRate,ga:avgSessionDuration",
+            "dimensions": "ga:yearMonth,ga:socialNetwork"
+        },
+        {
+            "name": "x social media totales",
+            "metrics": "ga:users,ga:sessions,ga:pageviews,ga:bounceRate,ga:avgSessionDuration",
+            "filters": "ga:source=@facebook,ga:source=@twitter,ga:source=@instagram,ga:source=@whatsapp",
+            "dimensions": "ga:yearMonth"
+        }
+    ]
+}

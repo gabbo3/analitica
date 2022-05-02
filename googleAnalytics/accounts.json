@@ -1,0 +1,49 @@
+{
+    "Accounts":
+        [
+            {
+                "name": "Red Cienradios",
+                "id": "ga:66731516"
+            },
+            {
+                "name": "La 100",
+                "id": "ga:167591365"
+            },
+            {
+                "name": "Radio Mitre",
+                "id": "ga:167562445"
+            },
+            {
+                "name": "Cienradios",
+                "id": "ga:167618622"
+            },
+            {
+                "name": "Ciudad",
+                "id": "ga:10698562"
+            },
+            {
+                "name": "El doce",
+                "id": "ga:104336501"
+            },
+            {
+                "name": "Los Andes",
+                "id": "ga:181950872"
+            },
+            {
+                "name": "Ole",
+                "id": "ga:31017400"
+            },
+            {
+                "name": "TN",
+                "id": "ga:122792137"
+            },
+            {
+                "name": "TyC",
+                "id": "ga:9574009"
+            },
+            {
+                "name": "Via Pais",
+                "id": "ga:131686643"
+            }
+        ]
+}
