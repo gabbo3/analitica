@@ -22,29 +22,29 @@ class ConnectorInstagram(Connector):
 			posts = a.getPosts(10)
 			posts_df = []
 			for p in posts:
-				self.mongo.upsertDict(p.asRawDict(),'TESTE','InstagramPosts')
+				self.mongo.upsertDict(p.asRawDict(),'RAWDATA','InstagramPosts')
 				posts_df.append(p.asSQLDict())
-			self.sql.upsert(pd.DataFrame(posts_df),'PY_IG_MEDIA')
+			self.sql.upsert(pd.DataFrame(posts_df),'IG_MEDIA')
 			
 			logging.info('Recuperando stories de : ' + a.instagram_name)
 			stories = a.getStories(10)
 			stories_df = []
 			for s in stories:
-				self.mongo.upsertDict(s.asRawDict(),'TESTE','InstagramStories')
+				self.mongo.upsertDict(s.asRawDict(),'RAWDATA','InstagramStories')
 				stories_df.append(s.asSQLDict())
-			self.sql.upsert(pd.DataFrame(stories_df),'PY_IG_STORIES')
+			self.sql.upsert(pd.DataFrame(stories_df),'IG_STORIES')
 
 			logging.info('Recuperando Insights diarias de : ' + a.instagram_name)
 			insights = a.getDailyInsights(10)
 			for i in insights:
-				self.mongo.upsertDF(i.asRawDF(),'TESTE','InstagramInsights')
-				self.sql.upsert(i.asSQLDF(),'PY_IG_AccountInsights')
+				self.mongo.upsertDF(i.asRawDF(),'RAWDATA','InstagramInsights')
+				self.sql.upsert(i.asSQLDF(),'IG_SimpleInsights')
 
 			logging.info('Recuperando Insights complejas de : ' + a.instagram_name)
 			insights = a.getLifetimeInsights(10)
 			for i in insights:
-				self.mongo.upsertDF(i.asRawDF(),'TESTE','InstagramInsights')
-				self.sql.upsert(i.asSQLDF(),'PY_IG_SimpleInsights')
+				self.mongo.upsertDF(i.asRawDF(),'RAWDATA','InstagramInsights')
+				self.sql.upsert(i.asSQLDF(),'IG_AudienceInsight')
 
 	def loadAccounts(self) -> list[Account]:
 		filepath = 'instagram/accounts.csv'
