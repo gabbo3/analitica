@@ -84,10 +84,11 @@ class SQLServer(Database):
 		df_columns = df_columns[:-1]
 
 		logging.info(table)
-		logging.info(table_columns)
-		logging.info(df_columns)
 		
 		if table_columns != df_columns:
+			logging.warning('Columns unmatched')
+			logging.info(table_columns)
+			logging.info(df_columns)
 			return None
 		else:
 			retval = str()
@@ -102,7 +103,6 @@ class SQLServer(Database):
 	def upsert(self,dataframe: pd.DataFrame,table):
 		columns = self.validate_columns(dataframe,table)
 		if columns == None:
-			logging.warning('Columns unmatched')
 			return
 
 		sets = self.getSets(dataframe)
