@@ -92,7 +92,7 @@ class TraficoXFuenteMap(Mapping):
 class TraficoPlayerLa100AlternativoMap(Mapping):
 	def sql(data : pd.DataFrame, end_date : str)-> pd.DataFrame:
 		retval = pd.DataFrame()
-		retval['UKEY'] = end_date + data['Origen'] + data['pagePath']
+		retval['UKEY'] = end_date + data['Origen'] + 'TODOSSINLA100'
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
@@ -120,7 +120,7 @@ class TraficoPlayersLa100XPlayerMap(Mapping):
 class TraficoTotalPlayersLa100Map(Mapping):
 	def sql(data : pd.DataFrame, end_date : str)-> pd.DataFrame:
 		retval = pd.DataFrame()
-		retval['UKEY'] = end_date + data['Origen'] + data['pagePath']
+		retval['UKEY'] = end_date + data['Origen'] + 'TODOS'
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
