@@ -1,6 +1,6 @@
 import pandas as pd
 from googleAnalytics.Service import Service
-from mappings.googleAnalytics.Queries import TraficoPlayerLa100AlternativoMap, TraficoPlayersLa100XPlayerMap, TraficoTotalMap, TraficoTotalPlayersLa100Map, TraficoXCanalMap, TraficoXDispositivoMap, TraficoXFuenteMap, TraficoXHostnameADCMap, TraficoXHostnameMap, TraficoXHostnameVerticalMap, TraficoXPaisDispositivoMap, TraficoXPaisMap
+from mappings.googleAnalytics.Queries import TraficoPlayerLa100AlternativoMap, TraficoPlayersLa100XPlayerMap, TraficoTotalMap, TraficoTotalPlayersLa100Map, TraficoTotalXRRSSMap, TraficoXCanalMap, TraficoXDispositivoMap, TraficoXFuenteMap, TraficoXHostnameADCMap, TraficoXHostnameMap, TraficoXHostnameVerticalMap, TraficoXPaisDispositivoMap, TraficoXPaisMap
 
 class Query:
     def __init__(self) -> None:
@@ -126,7 +126,7 @@ class TraficoTotalXRRSS(Query):
         self.ids = ids
 
     def asSQLDF(self) -> pd.DataFrame:
-        return TraficoTotalMap.sql(self.results, self.end_date)
+        return TraficoTotalXRRSSMap.sql(self.results, self.end_date)
 
 class TraficoPlayersRedCienRadios(ConditionalQuery):
     def __init__(self):

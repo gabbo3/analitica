@@ -67,7 +67,6 @@ class TraficoXDispositivoMap(Mapping):
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
-		retval['PromedioSesión'] = data['avgSessionDuration']
 		retval['DeviceCategory'] = data['deviceCategory']
 		retval['Origen'] = data['Origen']
 		retval['FechaFiltro'] = end_date
@@ -84,6 +83,19 @@ class TraficoXFuenteMap(Mapping):
 		retval['Pageviews'] = data['pageviews']
 		retval['Origen'] = data['Origen']
 		retval['Fuente'] = data['socialNetwork']
+		retval['FechaFiltro'] = end_date
+		retval['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S.000')
+		retval['FechaModificacion'] = None
+		return retval
+
+class TraficoTotalXRRSSMap(Mapping):
+	def sql(data : pd.DataFrame, end_date : str)-> pd.DataFrame:
+		retval = pd.DataFrame()
+		retval['UKEY'] = end_date + data['Origen']
+		retval['Users'] = data['users']
+		retval['Sessions'] = data['sessions']
+		retval['Pageviews'] = data['pageviews']
+		retval['Origen'] = data['Origen']
 		retval['FechaFiltro'] = end_date
 		retval['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S.000')
 		retval['FechaModificacion'] = None
