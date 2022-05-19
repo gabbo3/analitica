@@ -36,7 +36,8 @@ class ComplexInsightMapping(Mapping):
 		insightname = data['insightName'].upper()
 		endtime = datetime.strftime(datetime.strptime(data['end_time'],'%Y-%m-%dT%H:%M:%S+0000') - timedelta(hours=3),'%Y-%m-%d')
 		origen = cls.getOrigen(data['page'])
-		ukey = origen + insightname + endtime
+		dimension = str(data['dimension'])
+		ukey = origen + insightname + dimension + endtime
 		return ukey
 
 	@classmethod
