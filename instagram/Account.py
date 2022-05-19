@@ -52,7 +52,7 @@ class Account:
 		url += '?access_token='
 		url += self.token
 		url += '&fields='
-		url += 'id,caption,like_count,comments_count,media_product_type,media_type,timestamp,username'
+		url += 'id,caption,like_count,comments_count,media_product_type,media_type,timestamp,username,insights.metric(engagement,impressions,reach,saved)'
 		url += '&since=' + since
 		url += '&until=' + until
 		# Recupero los posteos
@@ -61,6 +61,9 @@ class Account:
 			r = requests.get(url)
 			response = r.json()
 			for p in response['data']:
+				for i in p['insights']['data']:
+					p[i['name']] = i['values'][0]['value']
+				p.pop('insights')
 				posts.append(Post(p))
 			try:
 				url = response['paging']['next']
