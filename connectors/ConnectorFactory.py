@@ -16,7 +16,7 @@ class ConnectorFactory:
             return ConnectorInstagram()
         elif name == 'googleadserver':
             return ConnectorGoogleAd()
-        elif name == 'googleanalytics':
+        elif name == 'googleanalyticsdiario':
             return ConnectorGoogleAnalytics()
         else:
             return Connector()

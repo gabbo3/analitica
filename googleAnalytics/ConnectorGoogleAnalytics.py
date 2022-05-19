@@ -18,16 +18,16 @@ class ConnectorGoogleAnalytics(Connector):
 
 	def execute(self):
 		dict2load = {}
-		dict2load['id'] = self.end_date + '_diario'
+		dict2load['id'] = self.end_date
 		dict2load['Results'] = {}
 		for q in self.queries:
 			dict2load['Results'][q.name] = []
 
 		for q in self.queries:
-			q.get_results(self.service,'2022-05-19','2022-05-19')
+			q.get_results(self.service,self.start_date,self.end_date)
 			self.sql.upsert(q.asSQLDF(),'PY_GA_DIARIO' + q.table)
 			dict2load['Results'][q.name].append(json.loads(q.asRawDF().to_json(orient='records')))
-		self.mongo.upsertDict(json.dumps(dict2load))
+		self.mongo.upsertDict(json.dumps(dict2load), 'TESTE', 'GoogleAnalyticsDiario')
 
 	def loadAccounts(self) -> list[Account]:
 		retval = list[Account]()
