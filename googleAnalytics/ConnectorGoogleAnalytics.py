@@ -16,19 +16,6 @@ class ConnectorGoogleAnalytics(Connector):
 		self.set_dates()
 		self.service = Service()
 
-	def execute(self):
-		dict2load = {}
-		dict2load['id'] = self.end_date
-		dict2load['Results'] = {}
-		for q in self.queries:
-			dict2load['Results'][q.name] = []
-
-		for q in self.queries:
-			q.get_results(self.service,self.start_date,self.end_date)
-			self.sql.upsert(q.asSQLDF(),'PY_GA_DIARIO' + q.table)
-			dict2load['Results'][q.name].append(json.loads(q.asRawDF().to_json(orient='records')))
-		self.mongo.upsertDict(dict2load, 'TESTE', 'GoogleAnalyticsDiario')
-
 	def loadAccounts(self) -> list[Account]:
 		retval = list[Account]()
 
@@ -63,7 +50,3 @@ class ConnectorGoogleAnalytics(Connector):
 		self.queries.append(TraficoTotalHostnameADC())
 		self.queries.append(TraficoXHostnameVertical())
 		self.queries.append(TraficoTotalHostnameVertical())
-
-	def set_dates(self):
-		self.start_date = format(datetime.today() - timedelta(days=1), '%Y-%m-%d')
-		self.end_date = format(datetime.today() - timedelta(days=1), '%Y-%m-%d')
