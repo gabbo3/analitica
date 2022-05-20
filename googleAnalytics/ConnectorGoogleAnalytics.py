@@ -27,7 +27,7 @@ class ConnectorGoogleAnalytics(Connector):
 			q.get_results(self.service,self.start_date,self.end_date)
 			self.sql.upsert(q.asSQLDF(),'PY_GA_DIARIO' + q.table)
 			dict2load['Results'][q.name].append(json.loads(q.asRawDF().to_json(orient='records')))
-		self.mongo.upsertDict(json.dumps(dict2load), 'TESTE', 'GoogleAnalyticsDiario')
+		self.mongo.upsertDict(dict2load, 'TESTE', 'GoogleAnalyticsDiario')
 
 	def loadAccounts(self) -> list[Account]:
 		retval = list[Account]()

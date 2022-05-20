@@ -138,7 +138,7 @@ class TraficoPlayersRedCienRadios(ConditionalQuery):
         self.ids =  "ga:66731516"
 
     def asSQLDF(self) -> pd.DataFrame:
-        return TraficoTotalMap.sql(self.results, self.end_date)
+        return TraficoTotalXRRSSMap.sql(self.results, self.end_date)
 
 class TraficoPlayersLa100(ConditionalQuery):
     def __init__(self):
@@ -150,7 +150,7 @@ class TraficoPlayersLa100(ConditionalQuery):
         self.ids = "ga:167591365"
 
     def asSQLDF(self) -> pd.DataFrame:
-        return TraficoTotalMap.sql(self.results, self.end_date)
+        return TraficoTotalXRRSSMap.sql(self.results, self.end_date)
 
 class TraficoSinPlayerLa100(ConditionalQuery):
     def __init__(self):
@@ -162,7 +162,7 @@ class TraficoSinPlayerLa100(ConditionalQuery):
         self.ids = 'ga:167591365'
 
     def asSQLDF(self) -> pd.DataFrame:
-        return TraficoTotalMap.sql(self.results, self.end_date)
+        return TraficoTotalXRRSSMap.sql(self.results, self.end_date)
 
 class TraficoPlayersMitre(ConditionalQuery):
     def __init__(self):
@@ -174,7 +174,7 @@ class TraficoPlayersMitre(ConditionalQuery):
         self.ids = "ga:167562445"
 
     def asSQLDF(self) -> pd.DataFrame:
-        return TraficoTotalMap.sql(self.results, self.end_date)
+        return TraficoTotalXRRSSMap.sql(self.results, self.end_date)
 
 class TraficoPlayersCienradios(ConditionalQuery):
     def __init__(self):
@@ -186,7 +186,7 @@ class TraficoPlayersCienradios(ConditionalQuery):
         self.ids = "ga:167618622"
 
     def asSQLDF(self) -> pd.DataFrame:
-        return TraficoTotalMap.sql(self.results, self.end_date)
+        return TraficoTotalXRRSSMap.sql(self.results, self.end_date)
 
 class TraficoPlayerLa100Alternativo(ConditionalQuery):
     def __init__(self):
