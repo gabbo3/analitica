@@ -24,6 +24,8 @@ class TraficoXCanalMap(Mapping):
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
+		retval['PromedioSesión'] = data['avgSessionDuration']
+		retval['PorcentajeRebote'] = data['bounceRate']
 		retval['ChannelGrouping'] = data['channelGrouping']
 		retval['Origen'] = data['Origen']
 		retval['FechaFiltro'] = end_date
@@ -38,8 +40,10 @@ class TraficoXPaisMap(Mapping):
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
-		retval['Origen'] = data['Origen']
+		retval['PromedioSesión'] = data['avgSessionDuration']
+		retval['PorcentajeRebote'] = data['bounceRate']
 		retval['Pais'] = data['country']
+		retval['Origen'] = data['Origen']
 		retval['FechaFiltro'] = end_date
 		retval['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S.000')
 		retval['FechaModificacion'] = None
@@ -52,9 +56,11 @@ class TraficoXPaisDispositivoMap(Mapping):
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
-		retval['Origen'] = data['Origen']
+		retval['PromedioSesión'] = data['avgSessionDuration']
+		retval['PorcentajeRebote'] = data['bounceRate']
 		retval['Pais'] = data['country']
 		retval['DeviceCategory'] = data['deviceCategory']
+		retval['Origen'] = data['Origen']
 		retval['FechaFiltro'] = end_date
 		retval['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S.000')
 		retval['FechaModificacion'] = None
@@ -67,6 +73,8 @@ class TraficoXDispositivoMap(Mapping):
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
+		retval['PromedioSesión'] = data['avgSessionDuration']
+		retval['PorcentajeRebote'] = data['bounceRate']
 		retval['DeviceCategory'] = data['deviceCategory']
 		retval['Origen'] = data['Origen']
 		retval['FechaFiltro'] = end_date
@@ -81,8 +89,10 @@ class TraficoXFuenteMap(Mapping):
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
-		retval['Origen'] = data['Origen']
+		retval['PromedioSesión'] = data['avgSessionDuration']
+		retval['PorcentajeRebote'] = data['bounceRate']
 		retval['Fuente'] = data['socialNetwork']
+		retval['Origen'] = data['Origen']
 		retval['FechaFiltro'] = end_date
 		retval['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S.000')
 		retval['FechaModificacion'] = None
@@ -95,6 +105,8 @@ class TraficoTotalXRRSSMap(Mapping):
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
+		retval['PromedioSesión'] = data['avgSessionDuration']
+		retval['PorcentajeRebote'] = data['bounceRate']
 		retval['Origen'] = data['Origen']
 		retval['FechaFiltro'] = end_date
 		retval['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S.000')
@@ -108,6 +120,8 @@ class TraficoPlayerLa100AlternativoMap(Mapping):
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
+		retval['PromedioSesión'] = data['avgSessionDuration']
+		retval['PorcentajeRebote'] = data['bounceRate']
 		retval['pagePath'] = 'TODOSSINLA100'
 		retval['Origen'] = data['Origen']
 		retval['FechaFiltro'] = end_date
@@ -122,6 +136,8 @@ class TraficoPlayersLa100XPlayerMap(Mapping):
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
+		retval['PromedioSesión'] = data['avgSessionDuration']
+		retval['PorcentajeRebote'] = data['bounceRate']
 		retval['pagePath'] = data['pagePath']
 		retval['Origen'] = data['Origen']
 		retval['FechaFiltro'] = end_date
@@ -136,6 +152,8 @@ class TraficoTotalPlayersLa100Map(Mapping):
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
+		retval['PromedioSesión'] = data['avgSessionDuration']
+		retval['PorcentajeRebote'] = data['bounceRate']
 		retval['pagePath'] = 'TODOS'
 		retval['Origen'] = data['Origen']
 		retval['FechaFiltro'] = end_date
@@ -150,6 +168,8 @@ class TraficoXHostnameMap(Mapping):
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
+		retval['PromedioSesión'] = data['avgSessionDuration']
+		retval['PorcentajeRebote'] = data['bounceRate']
 		retval['Hostname'] = data['hostname']
 		retval['Origen'] = data['Origen']
 		retval['FechaFiltro'] = end_date
@@ -164,6 +184,8 @@ class TraficoXHostnameADCMap(Mapping):
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
+		retval['PromedioSesión'] = data['avgSessionDuration']
+		retval['PorcentajeRebote'] = data['bounceRate']
 		retval['Hostname'] = 'TOTALADC'
 		retval['Origen'] = data['Origen']
 		retval['FechaFiltro'] = end_date
@@ -178,6 +200,8 @@ class TraficoXHostnameVerticalMap(Mapping):
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
+		retval['PromedioSesión'] = data['avgSessionDuration']
+		retval['PorcentajeRebote'] = data['bounceRate']
 		retval['Hostname'] = 'TOTALVERTICALES'
 		retval['Origen'] = data['Origen']
 		retval['FechaFiltro'] = end_date
