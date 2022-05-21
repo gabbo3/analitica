@@ -14,7 +14,7 @@ class ConnectorGoogleAnalyticsMensual(ConnectorGoogleAnalytics):
 
 		for q in self.queries:
 			q.get_results(self.service,self.start_date,self.end_date)
-			self.sql.upsert(q.asSQLDF(),'PY_GA_MENSUAL' + q.table)
+			self.sql.upsert(q.asSQLDF(),'GA_MENSUAL' + q.table)
 			dict2load['Results'][q.name].append(json.loads(q.asRawDF().to_json(orient='records')))
 		self.mongo.upsertDict(dict2load, 'TESTE', 'GoogleAnalyticsMensual')
 
