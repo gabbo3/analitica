@@ -36,9 +36,40 @@ class Query:
             data.append(i)
 
         df = pd.DataFrame(data, columns=cols)
-        df['Origen'] = self.response['profileInfo']['profileName']
+        df['Origen'] = self.getOrigen(self.response['profileInfo']['profileName'])
         
         return df
+
+    def getOrigen(self,profile_name) -> str:
+        if profile_name == 'Red Cienradios':
+            return 'RED CienRadios'
+        elif profile_name == 'La 100':
+            return 'La100'
+        elif profile_name == 'Radio Mitre':
+            return 'Mitre'
+        elif profile_name == 'Cienradios':
+            return 'Cienradios'
+        elif profile_name == 'www.ciudad.com.ar':
+            return 'Ciudad'
+        elif profile_name == 'El Doce tv':
+            return 'ElDoce'
+        elif profile_name == 'Todos los sitios':
+            return 'LosAndes'
+        elif profile_name == 'El Trece TV':
+            return 'ElTrece'
+        elif profile_name == '01 - www.ole.com.ar':
+            return 'Ole'
+        elif profile_name == 'TN Todo Noticias':
+            return 'TN'
+        elif profile_name == '1 www.tycsports.com':
+            return 'TyC'
+        elif profile_name == '01 - www.clarin.com':
+            return 'Clarin'
+        elif profile_name == 'ViaPais':
+            return 'ViaPais'
+        else:
+            return 'Error Mappeo'
+
 
 class ConditionalQuery(Query):
     pass
@@ -271,3 +302,5 @@ class TraficoTotalHostnameVertical(ConditionalQuery):
 
     def asSQLDF(self) -> pd.DataFrame:
         return TraficoXHostnameVerticalMap.sql(self.results, self.end_date)
+
+
