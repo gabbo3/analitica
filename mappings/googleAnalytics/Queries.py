@@ -5,8 +5,7 @@ from mappings.Mapping import Mapping
 class TraficoTotalMap(Mapping):
 	def sql(data : pd.DataFrame, end_date : str)-> pd.DataFrame:
 		retval = pd.DataFrame()
-		origen = data['Origen']
-		retval['UKEY'] = end_date + origen
+		retval['UKEY'] = end_date + data['Origen']
 		retval['Users'] = data['users']
 		retval['Sessions'] = data['sessions']
 		retval['Pageviews'] = data['pageviews']
