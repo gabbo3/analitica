@@ -13,15 +13,15 @@ class StoryMapping(Mapping):
 		dict2Load = {}
 		dict2Load['UKEY'] = data['id']
 		dict2Load['Id'] = data['id']
-		dict2Load['InstagramBusinessAccountId'] = None
+		# dict2Load['InstagramBusinessAccountId'] = None
 		# dict2Load['MediaType'] = data['media_type']
 		# dict2Load['Caption'] = decode(data, 'caption')
-		# dict2Load['Exits'] = data['exits']
 		# dict2Load['Impressions'] = data['impressions']
 		# dict2Load['Reach'] = data['reach']
-		# dict2Load['Replies'] = data['replies']
 		# dict2Load['TapsForward'] = data['taps_forward']
 		# dict2Load['TapsBack'] = data['taps_back']
+		# dict2Load['Exits'] = data['exits']
+		# dict2Load['Replies'] = data['replies']
 		dict2Load['Origen'] = cls.getOrigen(data['username'])
 		dict2Load['FechaFiltro'] = datetime.strftime(datetime.strptime(data['timestamp'],'%Y-%m-%dT%H:%M:%S+0000')-timedelta(hours=3),'%Y-%m-%d')
 		dict2Load['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S')
