@@ -19,9 +19,9 @@ class ConnectorInstagram(Connector):
 		for ba in self.business_accounts:
 			logging.info('Recuperando estadisticas de : ' + ba)
 			stats = self.discovery_account.getStats(ba)
-			self.mongo.upsertDict(stats.asRawDict(),'TESTE','InstagramBusinessDiscovery')
+			self.mongo.upsertDict(stats.asRawDict(),'RAWDATA','InstagramBusinessDiscovery')
 			stats_df.append(stats.asSQLDict())
-		self.sql.upsert(pd.DataFrame(stats_df),'PY_IG_BUSINESS_DISCOVERY')
+		self.sql.upsert(pd.DataFrame(stats_df),'IG_BUSINESS_DISCOVERY')
 
 		# Para cada cuenta
 		for a in self.accounts:
@@ -33,7 +33,7 @@ class ConnectorInstagram(Connector):
 			for p in posts:
 				self.mongo.upsertDict(p.asRawDict(),'RAWDATA','InstagramPosts')
 				posts_df.append(p.asSQLDict())
-			self.sql.upsert(pd.DataFrame(posts_df),'PY_IG_MEDIA')
+			self.sql.upsert(pd.DataFrame(posts_df),'IG_POSTS')
 			
 			logging.info('Recuperando stories de : ' + a.instagram_name)
 			stories = a.getStories(10)
@@ -41,7 +41,7 @@ class ConnectorInstagram(Connector):
 			for s in stories:
 				self.mongo.upsertDict(s.asRawDict(),'RAWDATA','InstagramStories')
 				stories_df.append(s.asSQLDict())
-			self.sql.upsert(pd.DataFrame(stories_df),'PY_IG_STORIES')
+			self.sql.upsert(pd.DataFrame(stories_df),'IG_STORIES')
 
 			logging.info('Recuperando Insights diarias de : ' + a.instagram_name)
 			insights = a.getDailyInsights(10)
