@@ -6,6 +6,7 @@ from instagram.Insight import Insight
 from instagram.LifetimeInsight import LifetimeInsight
 
 from instagram.Post import Post
+from instagram.Statistic import Statistic
 from instagram.Story import Story
 
 class Account:
@@ -161,3 +162,23 @@ class Account:
 			insights.append(LifetimeInsight(i))
 
 		return insights
+
+	def getStats(self, username):
+
+		until = datetime.now().date() + timedelta(days=1)
+		since = until - timedelta(days=10)
+		# Formateo las fechas
+		until = datetime.strftime(until,'%Y-%m-%d')
+		since = datetime.strftime(since,'%Y-%m-%d')
+		# Genero la URL
+		url = 'https://graph.facebook.com/'
+		url += self.instagram_id
+		url += '?access_token='
+		url += self.token
+		url += '&fields=business_discovery.username'
+		url += f'({username})'
+		url += '{username,profile_picture_url,name,biography,website,media_count,follows_count,followers_count}'
+		r = requests.get(url)
+		response = r.json()
+
+		return Statistic(response['business_discovery'])

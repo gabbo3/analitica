@@ -9,11 +9,20 @@ class ConnectorInstagram(Connector):
 
 	def __init__(self) -> None:
 		self.accounts = self.loadAccounts()
+		self.business_accounts = self.loadBusinessAccounts()
 		self.mongo = MongoDB()
 		self.sql = SQLServer()
 
 	def execute(self):
-		## TODO: Add Business discovery para ver numeros de otras cuentas
+		self.discovery_account = self.accounts[2]
+		stats_df = []
+		for ba in self.business_accounts:
+			logging.info('Recuperando estadisticas de : ' + ba.name)
+			stats = self.discovery_account.getStats(ba)
+			self.mongo.upsertDict(stats.asRawDict(),'TESTE','InstagramBusinessDiscovery')
+			stats_df.append(stats.asSQLDict())
+		self.sql.upsert(pd.DataFrame(stats_df),'PY_IG_BUSINESS_DISCOVERY')
+
 		# Para cada cuenta
 		for a in self.accounts:
 			logging.info('Procesando: ' + a.instagram_name)
@@ -52,5 +61,14 @@ class ConnectorInstagram(Connector):
 		accounts = list[Account]()
 		for index, row in csv.iterrows():
 			accounts.append(Account(row['id'], row['name'],row['token']))
+
+		return accounts
+
+	def loadBusinessAccounts(self) -> list:
+		filepath = 'instagram/discovery_accounts.csv'
+		csv = pd.read_csv(filepath)
+		accounts = list()
+		for index, row in csv.iterrows():
+			accounts.append(row['name'])
 
 		return accounts
