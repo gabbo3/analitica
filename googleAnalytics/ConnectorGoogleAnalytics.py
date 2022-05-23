@@ -3,7 +3,7 @@ from connectors.Connector import Connector
 from databases.MongoDB.MongoDB import MongoDB
 from databases.SQLServer.SQLServer import SQLServer
 from googleAnalytics.Account import Account
-from googleAnalytics.Query import Query, TraficoTotal,TraficoXCanal,TraficoXPais,TraficoXPaisDispositivo,TraficoXDispositivo,TraficoXFuente,TraficoTotalXRRSS,TraficoPlayersRedCienRadios,TraficoPlayersLa100,TraficoSinPlayerLa100,TraficoPlayersMitre,TraficoPlayersCienradios,TraficoPlayerLa100Alternativo,TraficoPlayersLa100XPlayer,TraficoTotalPlayersLa100,TraficoXHostnameADC,TraficoTotalHostnameADC,TraficoXHostnameVertical,TraficoTotalHostnameVertical
+from googleAnalytics.Query import Query, TraficoSinPlayerCienRadios, TraficoSinPlayerMitre, TraficoTotal,TraficoXCanal,TraficoXPais,TraficoXPaisDispositivo,TraficoXDispositivo,TraficoXFuente,TraficoTotalXRRSS,TraficoPlayersRedCienRadios,TraficoPlayersLa100,TraficoSinPlayerLa100,TraficoPlayersMitre,TraficoPlayersCienradios,TraficoPlayerLa100Alternativo,TraficoPlayersLa100XPlayer,TraficoTotalPlayersLa100,TraficoXHostnameADC,TraficoTotalHostnameADC,TraficoXHostnameVertical,TraficoTotalHostnameVertical
 from googleAnalytics.Service import Service
 import json
 
@@ -41,6 +41,8 @@ class ConnectorGoogleAnalytics(Connector):
 		self.queries.append(TraficoPlayersRedCienRadios())
 		self.queries.append(TraficoPlayersLa100())
 		self.queries.append(TraficoSinPlayerLa100())
+		self.queries.append(TraficoSinPlayerMitre())
+		self.queries.append(TraficoSinPlayerCienRadios())
 		self.queries.append(TraficoPlayersMitre())
 		self.queries.append(TraficoPlayersCienradios())
 		self.queries.append(TraficoPlayerLa100Alternativo())

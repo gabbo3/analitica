@@ -195,6 +195,30 @@ class TraficoSinPlayerLa100(ConditionalQuery):
     def asSQLDF(self) -> pd.DataFrame:
         return TraficoTotalXRRSSMap.sql(self.results, self.end_date)
 
+class TraficoSinPlayerMitre(ConditionalQuery):
+    def __init__(self):
+        self.name = "Trafico de la 100 sin el player"
+        self.metrics = "ga:users,ga:sessions,ga:pageviews,ga:bounceRate,ga:avgSessionDuration"
+        self.dimensions = "ga:yearMonth"
+        self.filters = "ga:pagePath!@/player/;ga:pagePath!@/hd/"
+        self.table = "_sinPlayer"
+        self.ids = 'ga:167562445'
+
+    def asSQLDF(self) -> pd.DataFrame:
+        return TraficoTotalXRRSSMap.sql(self.results, self.end_date)
+
+class TraficoSinPlayerCienRadios(ConditionalQuery):
+    def __init__(self):
+        self.name = "Trafico de la 100 sin el player"
+        self.metrics = "ga:users,ga:sessions,ga:pageviews,ga:bounceRate,ga:avgSessionDuration"
+        self.dimensions = "ga:yearMonth"
+        self.filters = "ga:pagePath!@/player/;ga:pagePath!@/hd/"
+        self.table = "_sinPlayer"
+        self.ids = 'ga:167618622'
+
+    def asSQLDF(self) -> pd.DataFrame:
+        return TraficoTotalXRRSSMap.sql(self.results, self.end_date)
+
 class TraficoPlayersMitre(ConditionalQuery):
     def __init__(self):
         self.name = "Trafico total de los players de Mitre"
