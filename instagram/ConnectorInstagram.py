@@ -55,6 +55,12 @@ class ConnectorInstagram(Connector):
 				self.mongo.upsertDF(i.asRawDF(),'RAWDATA','InstagramInsights')
 				self.sql.upsert(i.asSQLDF(),'IG_AudienceInsight')
 
+			logging.info('Recuperando seguidores online de : ' + a.instagram_name)
+			insights = a.getOnlineFollowers(10)
+			for i in insights:
+				self.mongo.upsertDF(i.asRawDF(),'RAWDATA','InstagramOnlineFollowers')
+				self.sql.upsert(i.asSQLDF(),'PY_IG_OnlineFollowers')
+
 	def loadAccounts(self) -> list[Account]:
 		filepath = 'instagram/accounts.csv'
 		csv = pd.read_csv(filepath)

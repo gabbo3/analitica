@@ -48,12 +48,30 @@ class InsightMapping(Mapping):
 			for val in i['value']:
 				IGList = {}
 				timestamp = datetime.strftime(datetime.strptime(i['end_time'],'%Y-%m-%dT%H:%M:%S+0000') - timedelta(hours=3),'%Y-%m-%d')
-				IGList['UKEY'] = timestamp + data['title'] + str(val)
+				IGList['UKEY'] = timestamp + cls.getOrigen(data['id'].split('/')[0]) + data['title'] + str(val)
 				IGList['Date'] = timestamp
 				IGList['AudienceType'] = data['title']
 				IGList['AudienceGroup'] = val
 				IGList['TotalAudience'] = i['value'][val]
 				IGList['Description'] = data['description']
+				IGList['Origen'] = cls.getOrigen(data['id'].split('/')[0])
+				IGList['FechaFiltro'] = timestamp
+				IGList['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S')
+				IGList['FechaModificacion'] = None
+				array.append(IGList)
+		df_ret = pd.DataFrame(array)
+		return df_ret
+
+	@classmethod
+	def sql_online_followers(cls,data: dict) -> pd.DataFrame:
+		array = []
+		for i in data['values']:
+			for val in i['value']:
+				IGList = {}
+				timestamp = datetime.strftime(datetime.strptime(i['end_time'],'%Y-%m-%dT%H:%M:%S+0000') - timedelta(hours=3),'%Y-%m-%d')
+				IGList['UKEY'] = timestamp + cls.getOrigen(data['id'].split('/')[0]) + '_' + str(val)
+				IGList['HoraDia'] = val
+				IGList['Onlinefollowers'] = i['value'][val]
 				IGList['Origen'] = cls.getOrigen(data['id'].split('/')[0])
 				IGList['FechaFiltro'] = timestamp
 				IGList['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S')
@@ -82,7 +100,7 @@ class InsightMapping(Mapping):
 		return df_ret
 
 	@classmethod
-	def getOrigen(cls,username):
+	def getOrigen(cls,username) -> str:
 		if username == '17841400247488610':
 			return 'La100'
 		elif username == '17841405767270271':

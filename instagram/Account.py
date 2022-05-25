@@ -3,7 +3,7 @@ import requests
 import json
 from instagram.DailyInsight import DailyInsight
 from instagram.Insight import Insight
-from instagram.LifetimeInsight import LifetimeInsight
+from instagram.LifetimeInsight import LifetimeInsight, OnlineFollowersInsight
 
 from instagram.Post import Post
 from instagram.Statistic import Statistic
@@ -182,3 +182,31 @@ class Account:
 		response = r.json()
 
 		return Statistic(response['business_discovery'])
+
+	def getOnlineFollowers(self, n_days=10) -> list[OnlineFollowersInsight]:
+		insights = list[Insight]()
+
+		# Configuro las fechas
+		until = datetime.now().date() + timedelta(days=1)
+		since = until - timedelta(days=n_days)
+		# Formateo las fechas
+		until = datetime.strftime(until,'%Y-%m-%d')
+		since = datetime.strftime(since,'%Y-%m-%d')
+
+		# Lifetime Insights
+		url = 'https://graph.facebook.com/'
+		url += self.instagram_id
+		url += '/insights'
+		url += '?access_token='
+		url += self.token
+		url += '&metric='
+		url += 'online_followers'
+		url += '&period='
+		url += 'lifetime'
+		url += '&since=' + since
+		r = requests.get(url)
+		response = r.json()
+		for i in response['data']:
+			insights.append(OnlineFollowersInsight(i))
+
+		return insights

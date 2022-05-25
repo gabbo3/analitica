@@ -9,3 +9,7 @@ class LifetimeInsight(Insight):
 
 	def asSQLDF(self) -> pd.DataFrame:
 		return InsightMapping.sql_lifetime(self.data)
+
+class OnlineFollowersInsight(LifetimeInsight):
+	def asSQLDF(self) -> pd.DataFrame:
+		return InsightMapping.sql_online_followers(self.data)
