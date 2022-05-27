@@ -6,6 +6,7 @@ accounts.csv
 googleads.yaml
 GoogleServiceAccount.json
 youtube/credentials
+youtube/client_secrets.json
 
 # Visual Studio Code
 .vscode/
