@@ -5,6 +5,7 @@ test/*
 accounts.csv
 googleads.yaml
 GoogleServiceAccount.json
+youtube/credentials
 
 # Visual Studio Code
 .vscode/
