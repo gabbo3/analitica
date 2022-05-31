@@ -25,7 +25,8 @@ class Service:
 			class flags:
 				auth_host_name = "localhost"
 				auth_host_port = [8080]
-				noauth_local_webserver = False
+				noauth_local_webserver = True
+				# noauth_local_webserver = False
 				logging_level = "INFO"
 
 			credentials = run_flow(flow, storage, flags)
