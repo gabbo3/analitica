@@ -1,16 +1,16 @@
 from datetime import datetime
-
+import logging
 import pandas as pd
 from connectors.Connector import Connector
 from mappings.youtube.Videos import YTVideosMap
 from youtube.Service import Service
 from youtube.Query import Query,TrafficSource,ByCountry,ByAge,ByGender,ByDay,Revenues,BySubscribedStatus,Subscribers,ByDevice,ByAdType,BySharingService,ByContentType
-from databases.MongoDB import MongoDB
-from databases.SQLServer import SQLServer
+from databases.MongoDB.MongoDB import MongoDB
+from databases.SQLServer.SQLServer import SQLServer
 from dateutil.relativedelta import relativedelta
 
 class ConnectorYouTube(Connector):
-	def __init__(self, name) -> None:
+	def __init__(self) -> None:
 		self.mongo = MongoDB()
 		self.sql = SQLServer()
 		self.set_dates()
@@ -20,6 +20,7 @@ class ConnectorYouTube(Connector):
 
 	def execute(self):
 		for analyticService in self.analyticsServices:
+			logging.info("Ejecutando :" + analyticService.account_name)
 			dict2load = {}
 			dict2load['id'] = self.end_date
 			dict2load['Results'] = {}
@@ -27,13 +28,16 @@ class ConnectorYouTube(Connector):
 				dict2load['Results'][q.name] = []
 			for q in self.queries:
 				q.get_results(analyticService,self.start_date,self.end_date)
-				# self.sql.upsert(q.asSQLDF(), q.table)
+				logging.info(q.name + " OK")
+				self.sql.upsert(q.asSQLDF(), 'PY_YT' + q.table)
 				# dict2load['Results'][q.name].append(json.loads(q.asRawDF().to_json(orient='records')))
 			# self.mongo.upsertDict(dict2load, 'RAWDATA', 'GoogleAnalyticsDiario')
 		
 		for dataService in self.dataServices:
+			logging.info("Ejecutando :" + dataService.account_name)
 			df_videos = self.get_videos(dataService)
-			# self.sql.upsert(YTVideosMap.sql(df_videos),'GA_DIARIO' + q.table)
+			logging.info("get_videos: OK")
+			self.sql.upsert(YTVideosMap.sql(df_videos),'PY_YT_Videos')
 
 
 	def get_videos(self, dataService : Service) -> pd.DataFrame:
@@ -84,6 +88,7 @@ class ConnectorYouTube(Connector):
 		return retval
 
 	def loadAnalyticsServices(self):
+		logging.info("Validando acceso : La100-Analytics")
 		self.La100Analytics = Service("La100-Analytics","youtubeAnalytics","v2",
 			"La100","youtube/client_secrets.json",
 			"youtube/credentials/La100-Analytics.json",
@@ -92,6 +97,7 @@ class ConnectorYouTube(Connector):
 			,"https://www.googleapis.com/auth/youtube"
 			,"https://www.googleapis.com/auth/youtubepartner"])
 
+		logging.info("Validando acceso : Mitre-Analytics")
 		self.MitreAnalytics = Service("Mitre-Analytics","youtubeAnalytics","v2",
 			"Mitre","youtube/client_secrets.json",
 			"youtube/credentials/Mitre-Analytics.json",
@@ -101,8 +107,11 @@ class ConnectorYouTube(Connector):
 			,"https://www.googleapis.com/auth/youtubepartner"])
 
 		return [self.La100Analytics, self.MitreAnalytics]
+		# return [self.La100Analytics]
+		# return [self.MitreAnalytics]
 
 	def loadDataServices(self):
+		logging.info("Validando acceso : La100-Data")
 		self.La100Data = Service("La100-Data","youtube","v3",
 			"La100","youtube/client_secrets.json",
 			"youtube/credentials/La100-Data.json",
@@ -111,6 +120,7 @@ class ConnectorYouTube(Connector):
 			"https://www.googleapis.com/auth/youtube.readonly",
 			"https://www.googleapis.com/auth/youtubepartner"])
 
+		logging.info("Validando acceso : Mitre-Data")
 		self.MitreData = Service("Mitre-Data","youtube","v3",
 			"Mitre","youtube/client_secrets.json",
 			"youtube/credentials/Mitre-Data.json",
@@ -120,3 +130,5 @@ class ConnectorYouTube(Connector):
 			"https://www.googleapis.com/auth/youtubepartner"])
 
 		return [self.La100Data, self.MitreData]
+		# return [self.La100Data]
+		# return [self.MitreData]
