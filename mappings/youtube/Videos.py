@@ -12,7 +12,7 @@ class YTVideosMap(Mapping):
 		retval['Title'] = df['snippet.title']
 		retval['Description'] = df['snippet.description']
 		retval['ChannelTitle'] = df['snippet.channelTitle']
-		retval['Tags'] = df['snippet.tags']
+		retval['Tags'] = str(df['snippet.tags'])
 		retval['CategoryId'] = df['snippet.categoryId']
 		retval['LiveBroadcastContent'] = df['snippet.liveBroadcastContent']
 		retval['ViewCount'] = df['statistics.viewCount']

@@ -166,8 +166,8 @@ class ByContentTypeMap(Mapping):
 	def sql(data : pd.DataFrame, end_date):
 		retval = pd.DataFrame()
 		retval['UKEY'] = end_date + data['Origen'] + data['liveOrOnDemand']
-		retval['liveOrOnDemand'] = data['liveOrOnDemand']
-		retval['views'] = data['views']
+		retval['LiveOrOnDemand'] = data['liveOrOnDemand']
+		retval['Views'] = data['views']
 		retval['Origen'] = data['Origen']
 		retval['FechaFiltro'] = end_date
 		retval['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S.000')
