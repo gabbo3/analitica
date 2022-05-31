@@ -48,7 +48,7 @@ class TrafficSource(Query):
         self.dimensions = "insightTrafficSourceType"
         self.filters = None
         self.sort = "-views"
-        self.table = None
+        self.table = "_TrafficSource"
         self.ids = None
         
     def asSQLDF(self) -> pd.DataFrame:
@@ -61,7 +61,7 @@ class ByCountry(Query):
         self.dimensions = "country"
         self.filters = None
         self.sort = "-views"
-        self.table = None
+        self.table = "_ByCountry"
         self.ids = None
         
     def asSQLDF(self) -> pd.DataFrame:
@@ -74,7 +74,7 @@ class ByAge(Query):
         self.dimensions = "ageGroup"
         self.filters = None
         self.sort = "ageGroup"
-        self.table = None
+        self.table = "_ByAge"
         self.ids = None
         
     def asSQLDF(self) -> pd.DataFrame:
@@ -87,7 +87,7 @@ class ByGender(Query):
         self.dimensions = "gender"
         self.filters = None
         self.sort = None
-        self.table = None
+        self.table = "_ByGender"
         self.ids = None
         
     def asSQLDF(self) -> pd.DataFrame:
@@ -100,7 +100,7 @@ class ByDay(Query):
         self.dimensions = "day"
         self.filters = None
         self.sort = None
-        self.table = None
+        self.table = "_ByDay"
         self.ids = None
         
     def asSQLDF(self) -> pd.DataFrame:
@@ -113,7 +113,7 @@ class Revenues(Query):
         self.dimensions = None
         self.filters = None
         self.sort = None
-        self.table = None
+        self.table = "_Revenues"
         self.ids = None
         
     def asSQLDF(self) -> pd.DataFrame:
@@ -126,7 +126,7 @@ class BySubscribedStatus(Query):
         self.dimensions = "subscribedStatus"
         self.filters = None
         self.sort = None
-        self.table = None
+        self.table = "_BySubscribedStatus"
         self.ids = None
         
     def asSQLDF(self) -> pd.DataFrame:
@@ -139,7 +139,7 @@ class Subscribers(Query):
         self.dimensions = "day"
         self.filters = None
         self.sort = None
-        self.table = None
+        self.table = "_Subscribers"
         self.ids = None
         
     def asSQLDF(self) -> pd.DataFrame:
@@ -152,7 +152,7 @@ class ByDevice(Query):
         self.dimensions = "deviceType"
         self.filters = None
         self.sort = None
-        self.table = None
+        self.table = "_ByDevice"
         self.ids = None
         
     def asSQLDF(self) -> pd.DataFrame:
@@ -165,7 +165,7 @@ class ByAdType(Query):
         self.dimensions = "adType"
         self.filters = None
         self.sort = "-grossRevenue"
-        self.table = None
+        self.table = "_ByAdType"
         self.ids = None
         
     def asSQLDF(self) -> pd.DataFrame:
@@ -178,7 +178,7 @@ class BySharingService(Query):
         self.dimensions = "sharingService"
         self.filters = None
         self.sort = "-shares"
-        self.table = None
+        self.table = "_BySharingService"
         self.ids = None
         
     def asSQLDF(self) -> pd.DataFrame:
@@ -191,7 +191,7 @@ class ByContentType(Query):
         self.dimensions = "liveOrOnDemand"
         self.filters = None
         self.sort = "-views"
-        self.table = None
+        self.table = "_ByContentType"
         self.ids = None
         
     def asSQLDF(self) -> pd.DataFrame:
