@@ -7,6 +7,7 @@ from googleAnalytics.ConnectorGoogleAnalyticsMensual import ConnectorGoogleAnaly
 from googleAnalytics.ConnectorGoogleAnalyticsParcial import ConnectorGoogleAnalyticsParcial
 from instagram.ConnectorInstagram import ConnectorInstagram
 from instagram.ConnectorInstagramHistorico import ConnectorInstagramHistorico
+from twitter.ConnectorTwitter import ConnectorTwitter
 from youtube.ConnectorYouTube import ConnectorYouTube
 
 
@@ -28,6 +29,8 @@ class ConnectorFactory:
             return ConnectorGoogleAnalyticsMensual()
         elif name == 'googleanalyticsparcial':
             return ConnectorGoogleAnalyticsParcial()
+        elif name == 'twitter':
+            return ConnectorTwitter()
         elif name == 'youtube':
             return ConnectorYouTube()
         else:

@@ -13,10 +13,12 @@ executing==0.8.3
 facebook-sdk==3.1.0
 google-api-core==2.3.2
 google-api-python-client==2.33.0
-google-auth-httplib2==0.1.0
 google-auth==1.35.0
+google-auth-httplib2==0.1.0
 google-auth-oauthlib==0.5.1
 googleads==31.0.0
+googleapis-common-protos==1.56.0
+httplib2==0.20.4
 idna==3.3
 ipykernel==6.13.0
 ipython==8.2.0
@@ -36,6 +38,7 @@ parso==0.8.3
 pickleshare==0.7.5
 platformdirs==2.5.1
 prompt-toolkit==3.0.29
+protobuf==3.20.1
 psutil==5.9.0
 pure-eval==0.2.2
 pyasn1==0.4.8
@@ -58,6 +61,8 @@ six==1.16.0
 stack-data==0.2.0
 tornado==6.1
 traitlets==5.1.1
+tweepy==4.10.0
+uritemplate==4.1.1
 urllib3==1.26.9
 wcwidth==0.2.5
 xmltodict==0.12.0

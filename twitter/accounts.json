@@ -1,0 +1,23 @@
+{
+	"Accounts":
+		[
+			{
+				"name": "La 100",
+				"user_name": "la100fm",
+				"APIKey": "9aO59srPENpi0vPysfWQDRhWX",
+				"APIKeySecret": "cwtZWH1E40nU10qfusjJLJBDV6foiaDQTlqPlCo7FDwfuBzUTW",
+				"BearerToken": "AAAAAAAAAAAAAAAAAAAAAH4oDgEAAAAA%2BpP8OXS3wbVDTkk2%2BBX33hZx3Is%3D1FM8hnGMb8jwqzUAiGIFTxUG6mDHuT3r6XVXM1taBnGPbm3M7p",
+				"AccessToken": "149679027-j7Nvm5Ds6jGV8g6Ym2H5BiYOkSjF9i6qKXZQiet0",
+				"AccessTokenSecret": "8WX7EnLdeG8lsb6YnP3pXaL67YS8Sx9KeT6zZpakvc7eQ"
+			},
+			{
+				"name": "Radio Mitre",
+				"user_name": "radiomitre",
+				"APIKey": "3J1ArExbH9YoYmy3z5meVNu43",
+				"APIKeySecret": "DdtPVtyZpE70UFkV7wXYFIELN1TxoTQMFLkHuaZjNp22WMpK8M",
+				"BearerToken": "AAAAAAAAAAAAAAAAAAAAABsqQwAAAAAAXGNWux3g0bXIOMlYJcEc2VkLpPM%3DpBggm8qkSCmP1N7cMsJXhc44WtHha0yHKQMbooDMcWNHAQWoqJ",
+				"AccessToken": "182923335-MLB2D24P5o09RFGnx3mGS84PHcwQZHoKhH6rCja8",
+				"AccessTokenSecret": "FzyGKGrNYL7DzzAqOOa5l8OihCPvCDpVxwfiBuvXOFgVn"
+			}
+		]
+}
