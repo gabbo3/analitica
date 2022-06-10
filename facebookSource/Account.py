@@ -19,7 +19,7 @@ class Account:
 
 		'''Recupera los posteos y los devuelve en un Dataframe para cada etapa: (raw, cleansed, SQL)'''
 
-		graph = facebook.GraphAPI(access_token=self.token, version="3.0")
+		graph = facebook.GraphAPI(access_token=self.token, version="3.1")
 		posts_data = graph.get_all_connections(
 			id=self.id, 
 			connection_name='posts', 
