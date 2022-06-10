@@ -34,7 +34,7 @@ except Exception as e:
 	traceback.print_exc()
 	with open(logfilename, 'r') as file:
 		log = file.read()
-		# sendMail(logname,log)
+		sendMail(logname,log)
 
 logging.info('FIN')
 exit()
