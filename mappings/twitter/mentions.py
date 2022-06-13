@@ -6,7 +6,7 @@ class MentionMap(Mapping):
 	@classmethod
 	def sql(cls, data : pd.DataFrame):
 		retval = pd.DataFrame()
-		retval['UKEY'] = data['id']
+		retval['UKEY'] = data['id_str']
 		retval['Id'] = data['id']
 		retval['CreatedAt'] = [datetime.strftime(datetime.strptime(x,'%a %b %d %H:%M:%S +0000 %Y')-timedelta(hours=3),'%Y-%m-%d %H:%M:%S') for x in data['created_at']]
 		retval['FullText'] = data['full_text']
