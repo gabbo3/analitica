@@ -83,12 +83,12 @@ class SQLServer(Database):
 			df_columns += ','
 		df_columns = df_columns[:-1]
 
-		logging.info(table)
+		logging.debug(table)
 		
 		if table_columns != df_columns:
-			logging.warning('Columns unmatched')
-			logging.info(table_columns)
-			logging.info(df_columns)
+			logging.warning('Columns unmatched in: ' + table)
+			logging.warning(table_columns)
+			logging.warning(df_columns)
 			return None
 		else:
 			retval = str()
