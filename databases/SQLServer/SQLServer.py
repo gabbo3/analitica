@@ -10,9 +10,13 @@ class SQLServer(Database):
 	def __init__(self):
 		try:
 			self.conn = pyodbc.connect('Driver={SQL Server};'
-										'Server=BUEANA03;'
+										'Server=172.16.6.69;'
 										'Database=ANALITICA;'
-										'Trusted_Connection=yes;')
+										'UID=python_externo;'
+										'PWD=MazzPython01'
+										# 'Trusted_Connection=yes;'
+										)
+			# self.conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+'BUEANA03'+';DATABASE='+database+';UID='+username+';PWD='+ password)
 			logging.info('Conectado a SQL Server')
 		except pyodbc.OperationalError:
 			logging.error('Error de conexion')
