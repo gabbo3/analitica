@@ -1,4 +1,5 @@
 import pandas as pd
+from mappings.twitter.users import UsersMap
 
 
 class User:
@@ -6,4 +7,4 @@ class User:
 		self.data = data
 
 	def asSQLDF(self):
-		return pd.json_normalize(self.data)
+		return UsersMap.sql(pd.json_normalize(self.data))

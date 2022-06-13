@@ -47,7 +47,7 @@ class ConnectorYouTube(Connector):
 			uploads_list_id = channel["contentDetails"]["relatedPlaylists"]["uploads"]
 
 		videos = []
-		request = dataService.resource.playlistItems().list(part="contentDetails",playlistId=uploads_list_id)
+		request = dataService.resource.playlistItems().list(part="contentDetails",playlistId=uploads_list_id,maxResults=4500)
 		while request:
 			response = request.execute()
 			for i in response['items']:

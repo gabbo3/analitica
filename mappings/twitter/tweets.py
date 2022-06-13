@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import pandas as pd
 from mappings.Mapping import Mapping
+from utils.decode import decode
 
 class TweetMap(Mapping):
 	@classmethod
@@ -12,7 +13,7 @@ class TweetMap(Mapping):
 		retval['FullText'] = data['full_text']
 		retval['RetweetCount'] = data['retweet_count']
 		retval['FavoriteCount'] = data['favorite_count']
-		retval['PossiblySensitive'] = data['possibly_sensitive']
+		retval['PossiblySensitive'] = decode(data,'possibly_sensitive','False')
 		retval['Lang'] = data['lang']
 		retval['Hashtags'] = [cls.cleanHashtag(x) for x in data['entities.hashtags']]
 		retval['UserMentions'] = [cls.cleanMentionedUser(x) for x in data['entities.user_mentions']]
