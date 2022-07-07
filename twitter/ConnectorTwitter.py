@@ -19,17 +19,17 @@ class ConnectorTwitter(Connector):
 			logging.info('Recuperando tweets de : ' + a.name)
 			tweets = a.getTweets()
 			for t in tweets:
-				self.sql.upsert(t.asSQLDF(), 'PY_TW_TWEETS')
+				self.sql.upsert(t.asSQLDF(), 'TW_TWEETS')
 
 			logging.info('Recuperando menciones a : ' + a.name)
 			mentions = a.getMentions()
 			for t in mentions:
-				self.sql.upsert(t.asSQLDF(), 'PY_TW_MENTIONS')
+				self.sql.upsert(t.asSQLDF(), 'TW_MENTIONS')
 			
 		logging.info('Recuperando datos del negocio')
 		users = self.accounts[0].getUsers()
 		for u in users:
-			self.sql.upsert(u.asSQLDF(), 'PY_TW_USERS')
+			self.sql.upsert(u.asSQLDF(), 'TW_USERS')
 
 	def loadAccounts(self) -> list[Account]:
 		retval = list[Account]()
