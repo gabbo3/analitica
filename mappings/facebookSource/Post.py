@@ -19,7 +19,6 @@ class PostMapping(Mapping):
 		dict2Load['UKEY'] = data['id']
 		dict2Load['ID'] = data['id']
 		dict2Load['Message'] = decode(data, 'message')
-
 		try: 
 			dict2Load['Type'] = data['attachments']['data'][0]['type']
 		except:
@@ -34,9 +33,26 @@ class PostMapping(Mapping):
 			dict2Load['Slug'] = None
 
 		dict2Load['CreatedTime'] = datetime.strftime(datetime.strptime(data['created_time'],'%Y-%m-%dT%H:%M:%S+0000') - timedelta(hours=3),'%Y-%m-%d %H:%M:%S')
-		dict2Load['CommentsCount'] = data['comments']
-		dict2Load['LikesCount'] = data['likes']
-		dict2Load['SharesCount'] = data['shares']
+		try:
+			dict2Load['CommentsCount'] = data['insights']['data'][0]['values'][0]['value']['comment']
+		except:
+			dict2Load['CommentsCount'] = 0
+		try:
+			dict2Load['LikesCount'] = data['insights']['data'][0]['values'][0]['value']['like']
+		except:
+			dict2Load['LikesCount'] = 0
+		try:
+			dict2Load['SharesCount'] = data['insights']['data'][0]['values'][0]['value']['share']
+		except:
+			dict2Load['SharesCount'] = 0
+		try:
+			dict2Load['ImpressionsCount'] = data['insights']['data'][1]['values'][0]['value']
+		except:
+			dict2Load['ImpressionsCount'] = 0
+		try:
+			dict2Load['EngagedUsersCount'] = data['insights']['data'][2]['values'][0]['value']
+		except:
+			dict2Load['EngagedUsersCount'] = 0
 		dict2Load['Origen'] = cls.getOrigen(data['pagename'])
 		dict2Load['FechaFiltro'] = datetime.strftime(datetime.strptime(data['created_time'],'%Y-%m-%dT%H:%M:%S+0000') - timedelta(hours=3),'%Y-%m-%d')
 		dict2Load['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S')
@@ -104,7 +120,7 @@ def getUrl(attachments):
 		urlTmp = urlTmp.replace('http://l.facebook.com/l.php?u=','')
 
 		if urlTmp[:13] == 'http://ow.ly/':
-			fp = urllib3.urlopen('http://bit.ly/rgCbf')
+			fp = urllib3.urlopen(urlTmp)
 			urlTmp = fp.geturl()
 	except:
 		pass
