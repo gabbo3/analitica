@@ -2,16 +2,22 @@ import requests
 import json
 from mappings.facebookSource.Post import PostMapping
 
-
 class Post:
-	def __init__(self,data :dict, token) -> None:
+	def __init__(self, name,*,id = None, token = None, data = None) -> None:
 
-		'''Un posteo con sus estadisticas'''
+		''' Un posteo de Facebook a partir de:
+			- Un ID sacado de un archivo (id, token)
+			- Un json devuelto por la GRAPH API (data)
+			- Argumento obligatorio (name): nombre de la cuenta
+		'''
 
-		self.data = data
-		self.id = data['id']
-		self.token = token
-		self.loadReactions()
+		self.name = name
+		if data is None:
+			self.id = id
+			self.token = token
+			self.data = self.getData()
+		else:
+			self.data = data
 
 	def asRawDict(self):
 		return PostMapping.raw(self.data)
@@ -22,28 +28,20 @@ class Post:
 	def asSQLDict(self):
 		return PostMapping.sql(self.data)
 
-	def loadReactions(self):
+	def getData(self):
 
-		'''Carga likes, comentarios y shares del posteo'''
+		'''A partir de un ID recupera data historica del posteo'''
 
 		url = 'https://graph.facebook.com/'
 		url += self.id
-		url += '/insights'
 		url += '?access_token='
 		url += self.token
-		url += '&metric=post_activity_by_action_type'
+		url += '&fields=id, message, created_time, updated_time, attachments,'
+		url += 'insights.metric(post_activity_by_action_type,post_impressions,post_engaged_users)'
+		url += '&since=0'
 		r = requests.get(url)
 		response = json.loads(r.text)
-		try:
-			self.data['likes'] = response['data'][0]['values'][0]['value']['like']
-		except:
-			self.data['likes'] = 0
-		try:
-			self.data['comments'] = response['data'][0]['values'][0]['value']['comment']
-		except:
-			self.data['comments'] = 0
-		try:
-			self.data['shares'] = response['data'][0]['values'][0]['value']['share']
-		except:
-			self.data['shares'] = 0
+		response['pagename'] = self.name
+		return response
+
 		
