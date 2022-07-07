@@ -23,13 +23,13 @@ class Account:
 		posts_data = graph.get_all_connections(
 			id=self.id, 
 			connection_name='posts', 
-			fields='id, message, created_time, updated_time, attachments', 
+			fields='id, message, created_time, updated_time, attachments,insights.metric(post_activity_by_action_type,post_impressions,post_engaged_users)', 
 			since=(datetime.now() - timedelta(days=n_days)))
 		
 		posts_list = list[Post]()
 		for i,p in enumerate(posts_data):
 			p['pagename'] = self.name
-			post = Post(p,self.token)
+			post = Post(data=p,token=self.token)
 			posts_list.append(post)
 
 		return posts_list
