@@ -1,8 +1,10 @@
 # Carpetas
 dev/*
 test/*
+.idea/
 # Credenciales y secretos
 accounts.csv
+accounts.json
 googleads.yaml
 GoogleServiceAccount.json
 youtube/credentials

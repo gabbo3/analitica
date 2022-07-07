@@ -41,6 +41,7 @@ class Query:
         return df
 
     def getOrigen(self,profile_name) -> str:
+
         if profile_name == 'Red Cienradios':
             return 'RED CienRadios'
         elif profile_name == 'La 100':
@@ -67,9 +68,10 @@ class Query:
             return 'Clarin'
         elif profile_name == 'ViaPais':
             return 'ViaPais'
+        elif profile_name == 'https://www.lavoz.com.ar':
+            return 'LaVoz'
         else:
             return 'Error Mappeo'
-
 
 class ConditionalQuery(Query):
     pass
