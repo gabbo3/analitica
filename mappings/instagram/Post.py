@@ -18,10 +18,10 @@ class PostMapping(Mapping):
 		dict2Load['CommentsCount'] = data['comments_count']
 		dict2Load['LikesCount'] = data['like_count']
 		dict2Load['Created'] = str(datetime.strptime(data['timestamp'],'%Y-%m-%dT%H:%M:%S+0000')-timedelta(hours=3))
-		dict2Load['Impressions'] = data['impressions']
-		dict2Load['Engagement'] = data['engagement']
-		dict2Load['Reach'] = data['reach']
-		dict2Load['Saved'] = data['saved']
+		dict2Load['Impressions'] = decode(data, 'impressions',0)
+		dict2Load['Engagement'] = decode(data, 'engagement',0)
+		dict2Load['Reach'] = decode(data, 'reach',0)
+		dict2Load['Saved'] = decode(data, 'saved',0)
 		dict2Load['Origen'] = cls.getOrigen(data['username'])
 		dict2Load['FechaFiltro'] = datetime.strftime(datetime.strptime(data['timestamp'],'%Y-%m-%dT%H:%M:%S+0000')-timedelta(hours=3),'%Y-%m-%d')
 		dict2Load['FechaCreacion'] = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S')
