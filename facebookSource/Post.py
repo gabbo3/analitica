@@ -18,6 +18,7 @@ class Post:
 			self.data = self.getData()
 		else:
 			self.data = data
+			self.data['pagename'] = self.name
 
 	def asRawDict(self):
 		return PostMapping.raw(self.data)

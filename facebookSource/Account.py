@@ -28,8 +28,7 @@ class Account:
 		
 		posts_list = list[Post]()
 		for i,p in enumerate(posts_data):
-			p['pagename'] = self.name
-			post = Post(data=p,token=self.token)
+			post = Post(self.name,data=p)
 			posts_list.append(post)
 
 		return posts_list

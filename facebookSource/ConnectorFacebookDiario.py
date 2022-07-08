@@ -13,13 +13,13 @@ class ConnectorFacebookDiario(ConnectorFacebook):
 			posts = a.getPosts(10)
 
 			postsSQL = []
-			logging.info('Subiendo posteos de: ' + a.name + 'a MongoDB')
+			logging.info('Subiendo posteos de: ' + a.name + ' a MongoDB')
 			for p in posts:
 				self.mongo.upsertDict(p.asRawDict(),'RAWDATA','FacebookPosts')
 				# self.mongo.upsertDict(p.asCleanDict(),'TESTE','FacebookPosts_clean')
 				postsSQL.append(p.asSQLDict())
 			
-			self.sql.upsert(pd.DataFrame(postsSQL),'FB_POSTS')
+			self.sql.upsert(pd.DataFrame(postsSQL),'PY_FB_POSTS')
 
 			# Insights
 			logging.info('Recuperando estadisticas de: ' + a.name)
