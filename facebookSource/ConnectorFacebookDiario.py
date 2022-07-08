@@ -19,7 +19,7 @@ class ConnectorFacebookDiario(ConnectorFacebook):
 				# self.mongo.upsertDict(p.asCleanDict(),'TESTE','FacebookPosts_clean')
 				postsSQL.append(p.asSQLDict())
 			
-			self.sql.upsert(pd.DataFrame(postsSQL),'PY_FB_POSTS')
+			self.sql.upsert(pd.DataFrame(postsSQL),'FB_POSTS')
 
 			# Insights
 			logging.info('Recuperando estadisticas de: ' + a.name)
