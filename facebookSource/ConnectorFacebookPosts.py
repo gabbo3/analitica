@@ -13,10 +13,11 @@ class ConnectorFacebookPosts(ConnectorFacebook):
 	
 	def execute(self):
 		upload_array = []
-		for i in tqdm(self.ids[:30]):
+		for i in tqdm(self.ids):
 			# Para cada id identificamos a que cuenta pertenece
 			a = self.getAccount(i)
-			p = Post(id=i,name= a.name,token=a.token)
+			p = Post(name= a.name,id=i,token=a.token)
+			self.mongo.upsertDict(p.asRawDict(),'RAWDATA','FB_POSTS_HISTORICO_TEST')
 			try:
 				upload_array.append(p.asSQLDict())
 			except Exception as e:
