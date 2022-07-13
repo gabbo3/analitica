@@ -26,7 +26,7 @@ class ConnectorFacebookPosts(ConnectorFacebook):
 		self.sql.upsert(pd.DataFrame(upload_array),'PY_FB_POSTS')
 
 	def loadIDS(self):
-		filepath = 'test/facebook/202001.csv'
+		filepath = '../FB Posteos mensuales/202205.csv'
 		csv = pd.read_csv(filepath)
 		self.ids = ['_'.join(i) for i in zip(csv["Identificador de la página"].map(str),csv["Identificador de la publicación"].map(str))]
 
