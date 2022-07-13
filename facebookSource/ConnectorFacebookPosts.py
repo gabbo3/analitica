@@ -74,4 +74,8 @@ class ConnectorFacebookPosts(ConnectorFacebook):
 			return self.accounts[19]
 		if account_id == '307159023083898':
 			return self.accounts[20]
+		if account_id == '234163610340060':
+			return self.accounts[21]
+		if account_id == '558401927533514':
+			return self.accounts[22]
 
